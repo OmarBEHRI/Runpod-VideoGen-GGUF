@@ -56,29 +56,20 @@ RUN python setup.py install
 
 # Install ComfyUI
 WORKDIR /
-RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
-    cd ComfyUI && \
-    pip install --no-cache-dir -r requirements.txt
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git
+
 RUN cd /ComfyUI/custom_nodes/ && \
-    git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
-    cd ComfyUI-Manager && \
-    pip install --no-cache-dir -r requirements.txt
+    git clone https://github.com/ltdrdata/ComfyUI-Manager.git
 
 # Install WAN I2V custom nodes
 RUN cd /ComfyUI/custom_nodes/ && \
-    git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
-    cd ComfyUI-VideoHelperSuite && \
-    pip install --no-cache-dir -r requirements.txt
+    git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
 
 RUN cd /ComfyUI/custom_nodes/ && \
-    git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
-    cd ComfyUI-Frame-Interpolation && \
-    pip install --no-cache-dir -r requirements.txt
+    git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git
 
 RUN cd /ComfyUI/custom_nodes/ && \
-    git clone https://github.com/city96/ComfyUI-GGUF.git && \
-    cd ComfyUI-GGUF && \
-    pip install --no-cache-dir -r requirements.txt
+    git clone https://github.com/city96/ComfyUI-GGUF.git
 
 # Download WAN I2V models
 # UNET models (GGUF format)
