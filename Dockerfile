@@ -81,19 +81,8 @@ RUN cd /ComfyUI/custom_nodes/ && \
     cd ComfyUI-GGUF && \
     pip install --no-cache-dir -r requirements.txt
 
-# Download WAN I2V models
-# UNET models (GGUF format)
-RUN wget -q "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/HighNoise/Wan2.2-I2V-A14B-HighNoise-Q5_0.gguf?download=true" -O /ComfyUI/models/unet/wan2.2_i2v_high_noise_14B_Q5_0.gguf
-RUN wget -q "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/LowNoise/Wan2.2-I2V-A14B-LowNoise-Q5_0.gguf?download=true" -O /ComfyUI/models/unet/wan2.2_i2v_low_noise_14B_Q5_0.gguf
-
-# VAE model
-RUN wget -q "https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/VAE/Wan2.1_VAE.safetensors?download=true" -O /ComfyUI/models/vae/wan_2.1_vae.safetensors
-
-# Text encoder
-RUN wget -q https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors -O /ComfyUI/models/clip/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-
-# LoRA model
-RUN wget -q "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors?download=true" -O /ComfyUI/models/loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors
+# Create model directories (models will be downloaded on-demand)
+RUN mkdir -p /ComfyUI/models/unet /ComfyUI/models/vae /ComfyUI/models/clip /ComfyUI/models/loras
 
 
 COPY . .

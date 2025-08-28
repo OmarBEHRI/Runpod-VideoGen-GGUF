@@ -10,6 +10,7 @@ import urllib.request
 import urllib.parse
 import time
 import binascii # Import for Base64 error handling
+from model_downloader import ensure_models_ready
 
 
 # Logging configuration
@@ -147,6 +148,12 @@ def handler(job):
 
     logger.info(f"Received job input: {job_input}")
     task_id = f"task_{uuid.uuid4()}"
+    
+    # Ensure all required models are downloaded before processing
+    logger.info("🔍 Checking required models...")
+    if not ensure_models_ready():
+        return {"error": "Failed to download required models. Please try again."}
+    logger.info("✅ All models are ready for processing")
 
     # Validate required inputs
     if "image_path" not in job_input:
